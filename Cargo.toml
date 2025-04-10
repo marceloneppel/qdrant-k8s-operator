@@ -1,0 +1,9 @@
+[package]
+name = "qdrant-k8s-operator"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0"
+rusty-charm-framework = { git = "https://github.com/marceloneppel/rusty-charm-framework.git" }
+serde = "1.0"
