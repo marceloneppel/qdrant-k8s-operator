@@ -13,3 +13,30 @@ parts:
     source: .
     organize:
       bin/qdrant-k8s-operator: dispatch
+    build-packages:
+      - libssl-dev
+
+containers:
+  qdrant:
+    resource: qdrant-image
+    mounts:
+    - storage: qdrant
+      location: /qdrant/storage
+
+resources:
+  qdrant-image:
+    type: oci-image
+    description: OCI image for Qdrant
+    upstream-source: qdrant/qdrant:v1.13.6
+
+storage:
+  qdrant:
+    type: filesystem
+    location: /qdrant/storage
+
+assumes:
+  - k8s-api
+  - any-of:
+      - all-of:
+          - juju >= 3.6.4
+          - juju < 4
